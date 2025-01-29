@@ -1,10 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleag.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Main Page</title>
 </head>
 <body>
 This is Main Page
+<hr>
+<!-- 로그인 상태에 따른 버튼 표시 -->
+<div>
+    <!-- 인증된 사용자에게만 보이는 로그아웃 버튼 -->
+    <sec:authorize access="isAuthenticated()">
+        <form th:action="@{/logout}" method="post">
+            <button type="submit">Logout</button>
+        </form>
+    </sec:authorize>
+
+    <!-- 비인증 사용자에게만 보이는 로그인 버튼 -->
+    <sec:authorize access="isAnonymous()">
+        <a th:href="@{/login}">Login</a>
+    </sec:authorize>
+</div>
+<hr>
+세션에 있는 아이디
+<span th:text="${id}"></span><br>
+세션에 있는 권한
+<span th:text="${role}"></span><br>
+anonymousUser ROLE_ANONYMOUS 는 로그인 하지 않은 경우
+
 </body>
+</html>
 </html>

@@ -1,16 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"/>
     <title>Login Page</title>
 </head>
 <body>
 
-This is Login Page
+<h1>This is Login Page</h1>
 <hr>
+
 <form action="/loginProc" method="post" name="LoginForm">
-    <input id="username" type="text" name="username" placeholder="id"/>
-    <input id="password" type="text" name="password" placeholder="password"/>
+    <input id="username" type="text" name="username" placeholder="id" required/>
+    <input id="password" type="password" name="password" placeholder="password" required/>
+    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
     <input type="submit" value="login"/>
 </form>
 
